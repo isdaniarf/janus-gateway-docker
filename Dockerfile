@@ -47,8 +47,10 @@ RUN cd /tmp && \
 
 COPY . /usr/local/src/janus-gateway
 
+RUN ls -l
+
 RUN cd /usr/local/src/janus-gateway && \
-	sh autogen.sh && \
+	sh ./autogen.sh && \
 	./configure --prefix=/usr/local && \
 	make && \
 	make install && \
@@ -81,7 +83,11 @@ RUN apt-get -y update && \
 		libusrsctp1 \
 		libwebsockets16 \
 		libnanomsg5 \
-		librabbitmq4 && \
+		librabbitmq4 \
+        dh-autoreconf \
+        libgstreamer1.0-dev \
+        libgstreamer-plugins-base1.0-dev \
+        libzmq3-dev && \
 	apt-get clean && \
 	rm -rf /var/lib/apt/lists/*
 
