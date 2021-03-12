@@ -48,6 +48,7 @@ RUN cd /tmp && \
 COPY . /usr/local/src/janus-gateway
 
 RUN cd /usr/local/src/janus-gateway && \
+	cp -r /tmp/libnice/* . && \
 	sh autogen.sh && \
 	./configure --prefix=/usr/local && \
 	make && \
